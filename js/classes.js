@@ -81,6 +81,7 @@ class Fighter extends Sprite {
         }
     }
 
+    // Draws fighters and attack boxes as rectangles, used before sprites
     /*draw() {
         c.fillStyle = this.color
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
@@ -100,8 +101,7 @@ class Fighter extends Sprite {
 
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
-        //c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-        //gravity
+        
         if (this.position.y + this.height + this.velocity.y >= canvas.height - 86) {
             this.velocity.y = 0
             this.position.y = 331.1999999999997
@@ -132,7 +132,7 @@ class Fighter extends Sprite {
         this.health -= 20
         }   
     }
-
+    
     switchSprite(sprite) {
         if (this.image === this.sprites.death.image) {
             if (this.frameCurrent === this.sprites.death.frames - 1)
@@ -184,9 +184,8 @@ class Fighter extends Sprite {
                     this.frames = this.sprites.fall.frames
                     this.frameCurrent = 0
                 }
-                break
-           
-                case 'attack1':
+                break 
+            case 'attack1':
                 if (this.image !== this.sprites.attack1.image){
                     this.image = this.sprites.attack1.image;
                     this.frames = this.sprites.attack1.frames

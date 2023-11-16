@@ -1,9 +1,10 @@
+//initializing canvas
 const canvas = document.querySelector('canvas');
 const c = canvas.getContext('2d');
 c.fillRect(0, 0, canvas.width, canvas.height);
 
 
-
+///////
 let timer = 60;
 const gravity = 0.2
 const keys = {
@@ -35,7 +36,13 @@ const keys = {
         pressed: false
     }
 }
+//////
 
+
+
+
+
+//////////////////////////////////////
 const background = new Sprite({
     position: {
         x: 0,
@@ -58,6 +65,18 @@ const shop = new Sprite({
     frames: 6
 })
 
+
+//////////////////////////////////////
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////
 const player = new Fighter({
     position: {
         x: 0,
@@ -96,7 +115,7 @@ const player = new Fighter({
             frames: 6
         },
         takeHit: {
-            imageSrc: './assets/samuraiMack/Take-hit.png',
+            imageSrc: './assets/samuraiMack/Take-hit-white.png',
             frames: 4
         },
         death: {
@@ -114,6 +133,9 @@ const player = new Fighter({
     }
 
 })
+
+
+//////////////////////////////////////////////////////
 
 const enemy = new Fighter({
     position: {
@@ -171,6 +193,9 @@ const enemy = new Fighter({
   }
 })
 
+//////////////////////////////////////////////////////
+
+
 
 decreaseTimer()
 
@@ -180,17 +205,25 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
     shop.update()
+    //background filter 
     c.fillStyle = (
         'rgba(255,255,255,0.08)'
     )
-    c.fillRect(0,0,canvas.width,canvas.height)
+    c.fillRect(0, 0, canvas.width, canvas.height)
+    //
     player.update()
     enemy.update()
     player.velocity.x = 0
     enemy.velocity.x = 0
 
 
-    // player movement
+
+//////////////////////////////////////////////////////
+
+
+
+
+ /*           PLAYER MOVEMENT           */
     if (keys.d.pressed && keys.a.pressed) {
         player.velocity.x = 0
         player.switchSprite('idle')
@@ -208,7 +241,7 @@ function animate() {
     }
 
 
-    // jumping
+    // PLAYER JUMPING
     if (player.velocity.y < 0) {
         player.switchSprite('jump')
         console.log('hello')
@@ -216,9 +249,9 @@ function animate() {
     else if (player.velocity.y > 0) {
         player.switchSprite('fall')
     }
-   
+//////////////////////////////////////////////////////
 
-    //enemy movement
+    // ENEMY MOVEMENT
     if (keys.ArrowRight.pressed && keys.ArrowLeft.pressed) {
         enemy.velocity.x = 0
         enemy.switchSprite('idle')
@@ -235,7 +268,9 @@ function animate() {
     else {
         enemy.switchSprite('idle')
     }
-     // enemy jumping
+
+
+     // ENEMY JUMPING
     if (enemy.velocity.y < 0) {
         enemy.switchSprite('jump')
         console.log('hello')
@@ -244,7 +279,9 @@ function animate() {
         enemy.switchSprite('fall')
     }
 
-    // collision detection 
+
+//////////////////////////////////////////////////////
+    // PLAYER COLLISION
     if (rectangularCollision({
         rectangle1: player,
         rectangle2: enemy
@@ -252,8 +289,8 @@ function animate() {
         console.log("player atk")
         
         player.isAttacking = false
-            enemy.takeHit()
-           
+        enemy.takeHit()  
+        //GSAP ANIMATION FOR HEALTHBAR    
         gsap.to('#enemy-health', {
             width: enemy.health + '%',
         } )
@@ -263,7 +300,8 @@ function animate() {
         player.isAttacking = false
     }
 
-    ///////
+    //////////////////////////////////////////////////////
+    // ENEMY COLLISION
     if (rectangularCollision({
         rectangle1: enemy,
         rectangle2: player
@@ -272,7 +310,7 @@ function animate() {
         enemy.isAttacking = false
         
         player.takeHit()
-            
+        //GSAP ANIMATION FOR HEALTHBAR    
         gsap.to('#player-health', {
             width: player.health + '%',
         } )
@@ -286,10 +324,13 @@ function animate() {
         gameOver(player,enemy,timerID)
     }
 }
+//////////////////////////////////////////////////////
+
+
 animate()
 
-
 window.addEventListener('keydown', (event) => {
+    // Disables controls for player if player is dead
     if (!player.dead) {
         switch (event.key) {
             case 'd':
@@ -312,6 +353,7 @@ window.addEventListener('keydown', (event) => {
                 break;
         }
     }
+    // Disables controls for enemy if enemy is dead
     if (!enemy.dead) {
         switch (event.key) {
             case 'ArrowRight':
