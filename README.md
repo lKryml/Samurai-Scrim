@@ -1,5 +1,6 @@
 # 2D Canvas Fighter
-this is my first project using html canvas it is not perfect at all.
+
+ this is my first project using html canvas it is not perfect at all. (this took exactly 1 week)
 
 Player1 Controls: W+A+S+D+*SPACE/ATTACK*
 Player2 Controls: ARROWUP/ARROWLEFT/*ARROWDOWN/ATTACK*/ARROWRIGHT
