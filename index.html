@@ -2,83 +2,41 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Happy+Monkey&family=Press+Start+2P&display=swap" rel="stylesheet">
 <head>
-    
-    <title>FightingGame</title>
-    <style>
-        *{
-            box-sizing: border-box;
-            font-family: 'Press Start 2P', cursive;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>SamuraiShowdown</title>
 </head>
 
 <body>
     <!--canvas-->
-    <div style="position: relative; display: inline-block;">
+    <div class="container">
+        <div class="game">
         <!--hud area-->
-        <div 
-        style="position: absolute;
-        display: flex; 
-        width:100%; 
-        align-items:center;
-        padding: 20px; ">
-            <!--Player health-->
-            <div style="position: relative;
-                        
-                        width:100%;
-                        display:flex;
-                        justify-content: flex-end;
-                        border-top: 4px solid whitesmoke;
-                        border-left: 4px solid whitesmoke;
-                        border-bottom: 4px solid whitesmoke;">
-                <div style="background-color: red;
-                        height: 30px; width: 100%; ">
+            <div class="hud-area">
+
+                    <!--Player health-->
+                <div class="player-health">
+                    <div class="player-health-dmg"></div>
+                    <div class="player-health-purple" id="player-health"></div>
                 </div>
-            
-                <div id="player-health" style="position: absolute; 
-                    background-color:#A78BFA; 
-                    top: 0; bottom: 0; right: 0; width:100%;">
+                    <!--Timer-->
+                    <div class="timer" id="timer"></div>
+                    <!--Enemy health-->
+                <div class="enemy-health">
+                    <div class="enemy-health-dmg"></div>
+                    <div class="enemy-health-purple" id="enemy-health"></div>
                 </div>
+    
             </div>
-            <!--Timer-->
-            <div id="timer" style="background-color: black; width: 100px; height: 50px; flex-shrink: 0; display: flex; justify-content: center; align-items: center;color: white;border: 4px solid whitesmoke;">  </div>
-            <!--Enemy health-->
-            <div 
-            style="position: relative;
-            width:100%;
-            border-top: 4px solid whitesmoke;
-                        border-right: 4px solid whitesmoke;
-                        border-bottom: 4px solid whitesmoke;">
-            <div  
-            style="background-color: red;
-            height: 30px; ">
-            </div>
-        
-        <div 
-        id="enemy-health" 
-        style="position: absolute; 
-        background-color: #A78BFA; 
-        top: 0; bottom: 0; right: 0; left: 0;">
+
+            <div class="display-screen" id="display-screen">tie</div>
+            <canvas id="canvas" width="1024" height="567"></canvas>
         </div>
     </div>
-    </div>
-        
     
-    
-    
-    <div
-    id="display-screen"
-    style="position: absolute; color: white; display: none; justify-content: center; align-items: center; top:0;right:0;bottom:0;left:0;">
-    tie
-    </div>
-    <canvas id="canvas" width="1024" height="567">
-
-        </canvas>
-    </div>
     <!--gsap animation lib-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
-        integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/utils.js"></script>
     <script src="js/classes.js"></script>
     <script src="js/index.js"></script>
